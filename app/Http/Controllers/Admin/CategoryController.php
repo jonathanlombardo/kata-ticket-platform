@@ -62,6 +62,9 @@ class CategoryController extends Controller
   public function update(Request $request, string $id)
   {
     $cat = Category::find($id);
+    if (!$cat) {
+      abort(404);
+    }
     $cat->name = $request->name;
     $cat->save();
     return redirect()->route('admin.categories.index');
@@ -72,6 +75,11 @@ class CategoryController extends Controller
    */
   public function destroy(string $id)
   {
-    //
+    $cat = Category::find($id);
+    if (!$cat) {
+      abort(404);
+    }
+    $cat->delete();
+    return redirect()->route('admin.categories.index');
   }
 }
