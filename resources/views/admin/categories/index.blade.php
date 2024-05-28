@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('head-title', 'Categorie')
+
 @section('content')
   <div class="container">
     <h1 class="text-center">Categorie</h1>
@@ -7,7 +9,9 @@
       <thead>
         <tr>
           <th scope="col">Categoria</th>
-          <th scope="col"></th>
+          <th class="text-end" scope="col">
+            <a class="me-3" href="{{ route('admin.categories.create') }}"><i class="fa-solid fa-plus"></i></a>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -15,8 +19,7 @@
           <tr>
             <td>{{ $cat->name }}</td>
             <td class="text-end">
-              <a class="me-3" href="{{ route('admin.categories.edit', $cat) }}"><i class="fa-regular fa-pen-to-square"></i></a>
-              {{-- <a class="me-3" href="{{ route('admin.categories.destroy', $cat) }}"><i class="fa-solid fa-trash"></i></a> --}}
+              <a class="me-3" href="{{ route('admin.categories.edit', $cat->id) }}"><i class="fa-regular fa-pen-to-square"></i></a>
             </td>
           </tr>
         @empty
