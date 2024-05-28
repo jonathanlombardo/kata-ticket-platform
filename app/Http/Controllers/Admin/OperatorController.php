@@ -62,6 +62,11 @@ class OperatorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-    }
+        $operator = Operator::find($id);
+        if (!$operator) {
+          abort(404);
+        }
+        $operator->delete();
+        return redirect()->route('admin.operators.index');
+      }
 }
