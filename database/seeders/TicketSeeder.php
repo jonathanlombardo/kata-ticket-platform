@@ -143,7 +143,7 @@ class TicketSeeder extends Seeder
                 'titolo' => 'Aggiornamento del sistema operativo necessario',
                 'descrizione' => 'Il cliente ha bisogno di aggiornare il sistema operativo del suo computer. Assicurarsi che il sistema sia compatibile con la nuova versione.',
                 ),
-                33 => array (
+                31 => array (
                 'titolo' => 'Backup dei dati',
                 'descrizione' => 'Il cliente richiede assistenza per eseguire il backup dei suoi dati. Fornire indicazioni su come eseguire un backup sicuro e affidabile.',
                 ),
@@ -187,7 +187,7 @@ class TicketSeeder extends Seeder
                 'titolo' => 'Surriscaldamento del computer',
                 'descrizione' => 'Il cliente segnala un surriscaldamento del suo computer. Potrebbe essere necessario verificare la ventilazione o pulire i dissipatori di calore.',
                 ),
-                44 => array (
+                42 => array (
                 'titolo' => 'Problema di configurazione del router',
                 'descrizione' => 'Il cliente ha problemi di configurazione del router di rete. Potrebbe essere necessario resettare il router o controllare le impostazioni di configurazione.',
                 ),
