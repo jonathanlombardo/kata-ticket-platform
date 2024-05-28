@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Operator;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Operator;
 use Faker\Generator as Faker;
 
 class OperatorSeeder extends Seeder
