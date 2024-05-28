@@ -23,10 +23,18 @@ Auth::routes();
 
 Route::get('/', [GuestHomeController::class, 'home'])->name('home');
 
-Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
+Route::middleware('auth')
+->name('admin.')
+->prefix('admin')
+->group(function () {
+
   Route::get('/home', [AdminHomeController::class, 'home'])->name('home');
+
   Route::resource('/tickets', TicketController::class);
+
   Route::resource('/categories', CategoryController::class);
+
+  Route::resource('/operators', OperatorController::class);
 });
 
 Auth::routes();
