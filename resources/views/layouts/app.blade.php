@@ -50,12 +50,18 @@
                 </li>
               @endif
             @else
+              {{-- Link create Ticket --}}
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.tickets.create') }}">Crea Ticket</a>
               </li>
+              {{-- Link categories --}}
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.categories.index') }}">Categorie</a>
               </li>
+              {{-- Link operators list --}}
+              <li class="nav-item">
+                   <a class="nav-link" href="{{ route('admin.operators.index') }}">Lista Operatori</a>
+               </li>
               <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                   {{ Auth::user()->name }}
