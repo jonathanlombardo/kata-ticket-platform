@@ -1,35 +1,40 @@
-
-import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 
 createApp({
     data() {
         return {
-            message: 'Hello Vue!',
-            apiUrl : 'http://127.0.0.1:8000/api/tickets',
-            tickets : [],
-            title: '',
-            description: '',
-            category: '',
-            status: '',
-            priority: '',
-            operator: '',
-        }
+            message: "Hello Vue!",
+            apiUrl: "http://127.0.0.1:8000/api/tickets",
+            tickets: [],
+            ticketsCollection: false,
+            filter: {
+                date: false,
+                statusId: false,
+                categoryId: false,
+                operatorId: false,
+            },
+        };
     },
     methods: {
-        getTickets(){
-            axios.get(this.apiUrl, {
-                params: {
-                        title: this.title,
-                        description: this.description,
-                        category: this.category,
-                        status: this.status,
-                        priority: this.priority,
-                        operator: this.operator,
-                    }
+        getTickets() {
+            const params = {};
+            for (let [key, value] of Object.entries(this.filter)) {
+                if (value) {
+                    params[key] = value;
+                }
+            }
+
+            axios
+                .get(this.apiUrl, {
+                    params,
                 })
-                .then( (response) => {
+                .then((response) => {
                     console.log(response);
-                    this.tickets = response.data.results;
+                    if (response.data.success) {
+                        this.ticketsCollection = response.data.results;
+                        this.tickets = response.data.results.data;
+                    }
+                    console.log(this.tickets);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -37,21 +42,10 @@ createApp({
                 .finally(function () {
                     // always executed
                 });
-                console.log(this.filteredTickets);
-        }
+            // console.log(this.filteredTickets);
+        },
     },
-    mounted(){
+    mounted() {
         this.getTickets();
     },
-
-    computed:{
-        filteredTickets(){
-            return this.tickets.filter((ticket) =>
-                    ticket.category.name.toLowerCase().includes(this.category.toLowerCase()) &&
-                    ticket.title.toLowerCase().includes(this.title.toLowerCase()) &&
-                    ticket.status.name.toLowerCase().includes(this.status.toLowerCase()) &&
-                    ticket.priority.name.toLowerCase().includes(this.priority.toLowerCase())
-                );
-        }
-    }
-}).mount('#app')
+}).mount("#app");
