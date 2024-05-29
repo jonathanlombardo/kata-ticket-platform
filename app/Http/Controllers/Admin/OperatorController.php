@@ -22,7 +22,7 @@ class OperatorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.operators.form');
     }
 
     /**
@@ -30,7 +30,10 @@ class OperatorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $operator = new Operator();
+        $operator->first_name = $request->first_name;
+        $operator->save();
+        return redirect()->route('admin.operators.index');
     }
 
     /**
@@ -46,7 +49,11 @@ class OperatorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $operator = Operator::find($id);
+        if (!$operator) {
+          abort(404);
+    }
+    return view('admin.operators.form', compact('operator'));
     }
 
     /**
@@ -54,7 +61,13 @@ class OperatorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+      $operator = Operator::find($id);
+      if (!$operator) {
+        abort(404);
+      }
+      $operator->first_name = $request->first_name;
+      $operator->save();
+      return redirect()->route('admin.operators.index');
     }
 
     /**
