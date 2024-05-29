@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
+@section('head-title', 'Lista operatori')
+
 @section('content')
 <div class="container">
       <h1 class="text-center mb-4">Lista operatori</h1>
-      <a class="me-3 btn btn-primary mb-3" href="#">Aggiungi operatore <i class="fa-solid fa-plus"></i></a>
+      <a class="me-3 btn btn-primary mb-3" href="{{ route('admin.operators.create') }}">Aggiungi operatore <i class="fa-solid fa-plus"></i></a>
       <table class="table">
       <thead class="table-secondary">
         <tr>
@@ -23,10 +25,10 @@
             <td>{{ $operator->first_name }}</td>
             <td>{{ $operator->last_name }}</td>
             <td>{{ $operator->email }}</td>
-            <td>{{ $operator->available }}</td>
+            <td>{{ $operator->available === 1 ? 'Disponibile' : 'Non disponibile' }}</td>
             <td class="text-end">
             {{-- Link edit operator --}}
-              <a class="me-3 text-black" href="#">
+              <a class="me-3 text-black" href="{{ route('admin.operators.edit', $operator->id) }}">
               <i class="fa-regular fa-pen-to-square"></i></a>
               {{-- Link delete operator --}}
               <a href="javascript:void(0)" class="me-3 text-danger"
@@ -40,7 +42,10 @@
         @endforelse
         </tbody>
     </table>
+  <div class="text-light">
 
+      {{ $operators->links() }}
+    </div>
 </div>
 @endsection
 
