@@ -28,7 +28,7 @@ class Ticket extends Model
    */
   public function category(): BelongsTo
   {
-    return $this->belongsTo(Category::class);
+    return $this->belongsTo(Category::class)->withTrashed();
   }
 
   /**
@@ -38,7 +38,7 @@ class Ticket extends Model
    */
   public function operator(): BelongsTo
   {
-    return $this->belongsTo(Operator::class);
+    return $this->belongsTo(Operator::class)->withTrashed();
   }
 
   /**
@@ -48,7 +48,7 @@ class Ticket extends Model
    */
   public function priority(): BelongsTo
   {
-    return $this->belongsTo(Priority::class);
+    return $this->belongsTo(Priority::class)->withTrashed();
   }
 
   /**
@@ -58,6 +58,6 @@ class Ticket extends Model
    */
   public function status(): BelongsTo
   {
-    return $this->belongsTo(Status::class);
+    return $this->belongsTo(Status::class)->withTrashed();
   }
 }

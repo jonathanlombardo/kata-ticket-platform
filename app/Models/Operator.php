@@ -34,11 +34,6 @@ class Operator extends Model
 
   public function isAvailable()
   {
-    if (count($this->getActiveTickets()->get()) || !$this->available) {
-      return false;
-    } else {
-      return true;
-    }
-    // return count($this->getActiveTickets()->get()) === 0;
+    return !count($this->getActiveTickets()->get()) && $this->available;
   }
 }
