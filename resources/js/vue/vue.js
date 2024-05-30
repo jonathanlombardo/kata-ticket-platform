@@ -3,20 +3,38 @@ import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 createApp({
     data() {
         return {
+            loading: false,
             message: "Hello Vue!",
+            baseUri: "http://127.0.0.1:8000",
             apiUrl: "http://127.0.0.1:8000/api/tickets",
             tickets: [],
             ticketsCollection: false,
             filter: {
                 date: false,
-                statusId: false,
+                statusId: 1,
                 categoryId: false,
                 operatorId: false,
             },
         };
     },
+    watch: {
+        // whenever filter changes, getTickets will run
+        filter() {
+            this.getTickets();
+        },
+    },
+    computed: {
+        nFilter() {
+            let n = 0;
+            for (let key in this.filter) {
+                if (this.filter[key]) n++;
+            }
+            return n;
+        },
+    },
     methods: {
         getTickets() {
+            this.loading = true;
             const params = {};
             for (let [key, value] of Object.entries(this.filter)) {
                 if (value) {
@@ -39,13 +57,13 @@ createApp({
                 .catch(function (error) {
                     console.log(error);
                 })
-                .finally(function () {
-                    // always executed
+                .finally(() => {
+                    this.loading = false;
                 });
             // console.log(this.filteredTickets);
         },
     },
-    mounted() {
+    created() {
         this.getTickets();
     },
 }).mount("#app");

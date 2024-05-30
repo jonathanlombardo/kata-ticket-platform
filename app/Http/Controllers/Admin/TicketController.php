@@ -19,7 +19,7 @@ class TicketController extends Controller
    */
   public function index()
   {
-    // TODO
+    return view('admin.tickets.index');
   }
 
   /**
@@ -85,7 +85,8 @@ class TicketController extends Controller
    */
   public function destroy(Ticket $ticket)
   {
-    // TODO
+    $ticket->delete();
+    return redirect()->route('admin.tickets.index');
   }
 
 }
