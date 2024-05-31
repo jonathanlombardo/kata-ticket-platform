@@ -74,12 +74,12 @@ E' in fase di sviluppo l'integrazione di un sistema di auto smaltimento dei tick
 
 ## Tecnologie utilizzate
 
--   BackEnd in PHP 8.1 con framework [Laravel 10.x](https://laravel.com/)
--   FrontEnd con integrazione di [Vue.js](https://vuejs.org/) via CDN.
--   Chiamate API Restfull tramite [Axios](https://axios-http.com/)
--   Styling in [SASS SCSS](https://sass-lang.com/) e framework [Boostrap5](https://getbootstrap.com/)
--   Precompilazione tramite [Vite](https://vitejs.dev/)
--   Icone tramite pacchetti [Fontawesome](https://fontawesome.com/)
+-   BackEnd in PHP 8.1 con framework <b>[Laravel 10.x](https://laravel.com/)</b> e DB <b>MySQL</b>
+-   FrontEnd con integrazione di <b>[Vue.js](https://vuejs.org/)</b> via CDN
+-   Chiamate <b>API Restfull</b> tramite <b>[Axios](https://axios-http.com/)</b>
+-   Styling in <b>[SASS SCSS](https://sass-lang.com/)</b> e framework <b>[Boostrap5](https://getbootstrap.com/)</b>
+-   Precompilazione tramite <b>[Vite](https://vitejs.dev/)</b>
+-   Icone tramite pacchetti <b>[Fontawesome](https://fontawesome.com/)</b>
 
 ## Inizializzare il progetto
 
