@@ -23,7 +23,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-dark text-dark shadow-sm">
       <div class="container-fluid px-5">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ route('home') }}">
           {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -50,6 +50,10 @@
                 </li>
               @endif
             @else
+              {{-- Link Ticket List --}}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.tickets.index') }}">Ticket</a>
+              </li>
               {{-- Link create Ticket --}}
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.tickets.create') }}">Crea Ticket</a>
@@ -60,8 +64,8 @@
               </li>
               {{-- Link operators list --}}
               <li class="nav-item">
-                   <a class="nav-link" href="{{ route('admin.operators.index') }}">Lista Operatori</a>
-               </li>
+                <a class="nav-link" href="{{ route('admin.operators.index') }}">Operatori</a>
+              </li>
               <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                   {{ Auth::user()->name }}
