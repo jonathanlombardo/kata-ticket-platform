@@ -50,51 +50,58 @@
         </div>
       </div>
     </div>
-    <table class="table">
-      <thead class="table-secondary">
-        <tr>
-          <th scope="col">Titolo</th>
-          <th scope="col">Data</th>
-          <th scope="col">Categoria</th>
-          <th scope="col">Operatore</th>
-          <th scope="col">Priorità</th>
-          <th scope="col">Stato</th>
-          <th class="text-end" scope="col">
-            <a class="me-3" href="{{ route('admin.tickets.create') }}"><i class="fa-solid fa-plus"></i></a>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-if="loading">
-          <td colspan="100%">LOADING...</td>
-        </tr>
-        <tr v-else-if="tickets.length" v-for="ticket in tickets">
-          <td>
-            <a class="text-black" :href="`${baseUri}/admin/tickets/${ticket.id}`">@{{ ticket.title }}</a>
-          </td>
-          <td>@{{ ticket.date }}</td>
-          <td>@{{ ticket.category.name }}</td>
-          <td>@{{ ticket.operator.first_name + ' ' + ticket.operator.last_name }}</td>
-          <td>@{{ ticket.priority.name }}</td>
-          <td>@{{ ticket.status.name }}</td>
-          <td class="text-end">
-            {{-- Link edit operator --}}
-            <a class="me-3 text-black" :href="`${baseUri}/admin/tickets/${ticket.id}/edit`">
-              <i class="fa-regular fa-pen-to-square"></i></a>
-            {{-- Link delete operator --}}
-            <a href="javascript:void(0)" class="me-3 text-danger" data-bs-toggle="modal" :data-bs-target="`#destroyTicketModal${ticket.id}`">
-              <i class="fa-solid fa-trash"></i>
-            </a>
-          </td>
-        </tr>
-        <tr v-else>
-          <td colspan="100%">Nessun ticket trovato@{{ nFilter ? ' con i filtri inseriti' : ', applica almeno un filtro' }}</td>
-        </tr>
-      </tbody>
-    </table>
-    {{-- <div class="text-light">
-      {{ $operators->links() }}
-    </div> --}}
+    <div class="table-wrapper">
+      <table class="table">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col">Titolo</th>
+            <th scope="col">Data</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Operatore</th>
+            <th scope="col">Priorità</th>
+            <th scope="col">Stato</th>
+            <th class="text-end" scope="col">
+              <a class="me-3" href="{{ route('admin.tickets.create') }}"><i class="fa-solid fa-plus"></i></a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-if="loading">
+            <td colspan="100%">LOADING...</td>
+          </tr>
+          <tr v-else-if="tickets.length" v-for="ticket in tickets">
+            <td>
+              <a class="text-black" :href="`${baseUri}/admin/tickets/${ticket.id}`">@{{ ticket.title }}</a>
+            </td>
+            <td>@{{ ticket.date }}</td>
+            <td>@{{ ticket.category.name }}</td>
+            <td>@{{ ticket.operator.first_name + ' ' + ticket.operator.last_name }}</td>
+            <td>@{{ ticket.priority.name }}</td>
+            <td>@{{ ticket.status.name }}</td>
+            <td class="text-end">
+              {{-- Link edit ticket --}}
+              <a class="me-3 text-black" :href="`${baseUri}/admin/tickets/${ticket.id}/edit`">
+                <i class="fa-regular fa-pen-to-square"></i></a>
+              {{-- Link delete ticket --}}
+              <a href="javascript:void(0)" class="me-3 text-danger" data-bs-toggle="modal" :data-bs-target="`#destroyTicketModal${ticket.id}`">
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+          <tr v-else>
+            <td colspan="100%">Nessun ticket trovato@{{ nFilter ? ' con i filtri inseriti' : ', applica almeno un filtro' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <nav v-if="isPageMoreThanOne && !loading" aria-label="Page navigation">
+      <ul class="pagination justify-content-end">
+        <li v-on:click="goToPage(link.url)" v-for="link in ticketsCollection.links" :class="['page-item', { 'disabled': !link.url }]">
+          <a href="javascript:void(0)" :class="['page-link', { 'active': link.active }]"><span v-html="link.label"></span></a>
+        </li>
+      </ul>
+    </nav>
   </div>
 @endsection
 

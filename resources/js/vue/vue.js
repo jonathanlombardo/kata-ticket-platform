@@ -25,6 +25,7 @@ createApp({
             handler() {
                 let delay = 1300;
                 this.loading = true;
+
                 clearTimeout(this.filterClock);
                 this.filterClock = setTimeout(() => {
                     this.getTickets();
@@ -41,9 +42,15 @@ createApp({
             }
             return n;
         },
+        isPageMoreThanOne() {
+            return (
+                this.ticketsCollection.next_page_url ||
+                this.ticketsCollection.prev_page_url
+            );
+        },
     },
     methods: {
-        getTickets() {
+        getTickets(endpoint = this.apiUrl) {
             this.loading = true;
             const params = {};
             for (let [key, value] of Object.entries(this.filter)) {
@@ -53,7 +60,7 @@ createApp({
             }
 
             axios
-                .get(this.apiUrl, {
+                .get(endpoint, {
                     params,
                 })
                 .then((response) => {
@@ -71,6 +78,10 @@ createApp({
                     this.loading = false;
                 });
             // console.log(this.filteredTickets);
+        },
+
+        goToPage(url) {
+            this.getTickets(url);
         },
     },
     created() {
