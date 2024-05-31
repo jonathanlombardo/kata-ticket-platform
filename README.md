@@ -8,13 +8,11 @@ L'applicazione permette di gestire ticket di supporto per ottimizzare il servizi
 
 #### Autenticazione:
 
-```
-L'utente può registrarsi ed autenticarsi per gestire i ticket di supporto.
+-   L'utente può registrarsi ed autenticarsi per gestire i ticket di supporto.
 
-La piattaforma prevede un solo ruolo per gli utenti, ossia il ruolo d'amministratore.
+-   La piattaforma prevede un solo ruolo per gli utenti, ossia il ruolo d'amministratore.
 
-Tutte le pagine sono raggiungibili solo dall'utente autenticato, ad eccezione della registrazione/login e della home pubblica.
-```
+-   Tutte le pagine sono raggiungibili solo dall'utente autenticato, ad eccezione della registrazione/login e della home pubblica.
 
 #### Gestione dei Ticket
 
