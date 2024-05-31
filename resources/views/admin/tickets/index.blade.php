@@ -8,8 +8,47 @@
 @section('content')
   <div class="container">
     <h1 class="text-center mb-4">Lista ticket</h1>
-    <div class="filter-wrapper p-5 text-center">
-      todo filters
+    <div class="filter-wrapper mb-4 row row-cols-2 g-5">
+      <div class="col">
+        <div class="row g-3">
+          <label class="col-3 col-form-label" for="dateInput">Data</label>
+          <div class="col-9">
+            <input v-model="filter.date" class="form-control" type="date" id="dateInput">
+          </div>
+          <label class="col-3 col-form-label" for="operatorSelect">Operatore</label>
+          <div class="col-9">
+            <select v-model="filter.operatorId" class="form-select" id="operatorSelect">
+              <option selected value="false" class="d-none">Seleziona un operatore</option>
+              @foreach ($operators as $operator)
+                <option value="{{ $operator->id }}">{{ $operator->first_name }} {{ $operator->last_name }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row g-3">
+          <label class="col-3 col-form-label" for="statusSelect">Stato</label>
+          <div class="col-9">
+            <select v-model="filter.statusId" class="form-select" id="statusSelect">
+              <option selected value="false" class="d-none">Seleziona uno stato</option>
+              @foreach ($statues as $status)
+                <option value="{{ $status->id }}">{{ $status->name }}</option>
+              @endforeach
+            </select>
+          </div>
+
+          <label class="col-3 col-form-label" for="categorySelect">Categoria</label>
+          <div class="col-9">
+            <select v-model="filter.categoryId" class="form-select" id="categorySelect">
+              <option selected value="false" class="d-none">Seleziona una categoria</option>
+              @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
     <table class="table">
       <thead class="table-secondary">
@@ -30,7 +69,9 @@
           <td colspan="100%">LOADING...</td>
         </tr>
         <tr v-else-if="tickets.length" v-for="ticket in tickets">
-          <td>@{{ ticket.title }}</td>
+          <td>
+            <a class="text-black" :href="`${baseUri}/admin/tickets/${ticket.id}`">@{{ ticket.title }}</a>
+          </td>
           <td>@{{ ticket.date }}</td>
           <td>@{{ ticket.category.name }}</td>
           <td>@{{ ticket.operator.first_name + ' ' + ticket.operator.last_name }}</td>

@@ -9,9 +9,10 @@ createApp({
             apiUrl: "http://127.0.0.1:8000/api/tickets",
             tickets: [],
             ticketsCollection: false,
+            filterClock: false,
             filter: {
-                date: false,
-                statusId: 1,
+                date: null,
+                statusId: false,
                 categoryId: false,
                 operatorId: false,
             },
@@ -19,8 +20,17 @@ createApp({
     },
     watch: {
         // whenever filter changes, getTickets will run
-        filter() {
-            this.getTickets();
+        // with a dilay
+        filter: {
+            handler() {
+                let delay = 1300;
+                this.loading = true;
+                clearTimeout(this.filterClock);
+                this.filterClock = setTimeout(() => {
+                    this.getTickets();
+                }, delay);
+            },
+            deep: true,
         },
     },
     computed: {
