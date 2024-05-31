@@ -97,7 +97,7 @@
 
     <nav v-if="isPageMoreThanOne && !loading" aria-label="Page navigation">
       <ul class="pagination justify-content-end">
-        <li v-on:click="goToPage(link.url)" v-for="link in ticketsCollection.links" :class="['page-item', { 'disabled': !link.url }]">
+        <li v-on:click="goToPage(link.url)" v-for="link in ticketsCollection.links" class="page-item" :class="{ 'disabled': !link.url }">
           <a href="javascript:void(0)" :class="['page-link', { 'active': link.active }]"><span v-html="link.label"></span></a>
         </li>
       </ul>
