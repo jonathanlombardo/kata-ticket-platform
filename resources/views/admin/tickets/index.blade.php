@@ -18,7 +18,7 @@
           <label class="col-3 col-form-label" for="operatorSelect">Operatore</label>
           <div class="col-9">
             <select v-model="filter.operatorId" class="form-select" id="operatorSelect">
-              <option selected value="false" class="d-none">Seleziona un operatore</option>
+              <option selected value="false">Nessun filtro</option>
               @foreach ($operators as $operator)
                 <option value="{{ $operator->id }}">{{ $operator->first_name }} {{ $operator->last_name }}</option>
               @endforeach
@@ -31,7 +31,7 @@
           <label class="col-3 col-form-label" for="statusSelect">Stato</label>
           <div class="col-9">
             <select v-model="filter.statusId" class="form-select" id="statusSelect">
-              <option selected value="false" class="d-none">Seleziona uno stato</option>
+              <option selected value="false">Nessun filtro</option>
               @foreach ($statues as $status)
                 <option value="{{ $status->id }}">{{ $status->name }}</option>
               @endforeach
@@ -41,7 +41,7 @@
           <label class="col-3 col-form-label" for="categorySelect">Categoria</label>
           <div class="col-9">
             <select v-model="filter.categoryId" class="form-select" id="categorySelect">
-              <option selected value="false" class="d-none">Seleziona una categoria</option>
+              <option selected value="false">Nessun filtro</option>
               @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
               @endforeach
